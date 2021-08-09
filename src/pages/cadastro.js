@@ -1,22 +1,46 @@
-import { Button, Table, Thead, Tbody, Tr, Th, Td, Link } from '@chakra-ui/react';
+import {
+  Button,
+  Table,
+  Thead,
+  Tbody,
+  Tr,
+  Th,
+  Td,
+  Link,
+  Flex,
+} from '@chakra-ui/react';
 import axios from 'axios';
+import { useEffect } from 'react';
 
+
+async function hadleDelete(id) {
+  const userDelete = '/http:/localhost:3333/users';
+  if (confirm('Deseja realmente excluir este usuário?')) {
+    const result = await axios.delete(userDelete);
+  }
+}
+const home = 'http://localhost:3000/';
 const Cadastros = ({ dados }) => (
   <div>
     
-    <Button
-      border="none"
-      w="25"
-      size="md"
-      colorScheme="blue"
-      type="submit"
-      mt="6"
-      ml="5"
-    >
-      Novo registro
-    </Button>
+    <Link href={home}>
+      <Button
+       
+        border="none"
+        w="25"
+        size="md"
+        colorScheme="blue"
+        type="submit"
+        mt="6"
+        ml="5"
+      >
+        Novo registro
+      </Button>
+    </Link>
+    <img style={{marginTop:30, marginLeft:98}} src="imagens/BR24.png" />
+ <Flex>
     
-   
+    
 
     <Table variant="simple">
       <Thead>
@@ -29,8 +53,12 @@ const Cadastros = ({ dados }) => (
       {dados.map((c) => (
         <Tbody key={c.id}>
           <Tr key="">
-            <Td>{c.title}</Td>
-            <Td>{console.log(c.title)}</Td>
+            <Td>{c.companies.title}</Td>
+            <Td lineHeight="2" display="flex" paddingTop="14">
+              {c.name} {c.last_name}
+              <br />
+              {c.name1} {c.last_name1}
+            </Td>
 
             <Td>
               <Button
@@ -51,6 +79,7 @@ const Cadastros = ({ dados }) => (
                 size="sm"
                 colorScheme="red"
                 type="submit"
+                onClick={hadleDelete}
               >
                 Excluir
               </Button>
@@ -59,19 +88,19 @@ const Cadastros = ({ dados }) => (
         </Tbody>
       ))}
     </Table>
+  </Flex>
   </div>
+ 
 );
 
 Cadastros.getInitialProps = async () => {
   const user = 'http://localhost:3333/users';
   const company = 'http://localhost:3333/companies';
 
-  const response = await axios.get(company);
-  
+  const response = await axios.get(user);
 
   return {
     dados: response.data,
-    
   };
 };
 
