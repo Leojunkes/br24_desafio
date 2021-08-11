@@ -7,16 +7,68 @@ import {
   Stack,
   Link,
 } from '@chakra-ui/react';
+import axios from 'axios';
+
+
 
 export default function Home() {
   const usersPost = 'http://localhost:3333/contacts';
   const companyPost = 'http://localhost:3333/companies';
   const redirectPost = 'http://localhost:3000/cadastro';
+  const companyContacts = [usersPost, companyPost];
 
   return (
     <div>
-      <img style={{marginLeft:100, marginTop:20}} src="imagens/BR24.png" />
-      <Flex mt="-14" w="100" h="100vh" align="center" justifyContent="center">
+      <img alt="" style={{ marginLeft: 100, marginTop: 20 }} src="imagens/BR24.png" />
+      <a href={redirectPost}>cadastro</a>
+      <Flex
+        as="form"
+        width="100%"
+        p="8"
+        borderRadius={8}
+        flexDirection="column"
+        method="POST"
+        action={companyPost}
+        id="insert_form"
+      >
+        <FormControl>
+          <FormLabel htmlFor="empresa">Nome da empresa</FormLabel>
+          <Input
+            name="title"
+            id="title"
+            variant="filled"
+            w="100%"
+            type=""
+            _hover={{ bgColor: 'gray.200' }}
+            size="md"
+          />
+        </FormControl>
+        <Flex mt="1">
+          <Button
+            border="none"
+            w="20"
+            size="md"
+            colorScheme="blue"
+            type="submit"
+          >
+            submit
+          </Button>
+          <Button
+            ml="1"
+            className=""
+            type="reset"
+            value="Limpar Valores"
+            colorScheme="red"
+            border="none"
+            w="20"
+            size="md"
+          >
+            Limpar
+          </Button>
+        </Flex>
+      </Flex>
+
+      <Flex mt="-100" w="100" h="100vh" align="center" justifyContent="center">
         <Flex
           as="form"
           width="100%"
@@ -24,15 +76,14 @@ export default function Home() {
           borderRadius={8}
           flexDirection="column"
           method="POST"
-          action={companyPost}
+          action={usersPost}
           id="insert_form"
-          
         >
           <Stack mt="4">
             <FormControl>
               <FormLabel htmlFor="empresa">Nome da empresa</FormLabel>
               <Input
-                name="title"
+                name="companiesId"
                 id="title"
                 variant="filled"
                 w="100%"
@@ -104,20 +155,29 @@ export default function Home() {
               />
             </FormControl>
           </Stack>
-<Link to="/">
-<Button
-            border="none"
-            w="20"
-            size="md"
-            colorScheme="blue"
-            type="submit"
-            mt="6"
-            
-          >
-            Submit
-          </Button>
-</Link>
-          
+          <Flex mt="1">
+            <Button
+              border="none"
+              w="20"
+              size="md"
+              colorScheme="blue"
+              type="submit"
+            >
+              submit
+            </Button>
+            <Button
+              ml="1"
+              className=""
+              type="reset"
+              value="Limpar Valores"
+              colorScheme="red"
+              border="none"
+              w="20"
+              size="md"
+            >
+              Limpar
+            </Button>
+          </Flex>
         </Flex>
       </Flex>
     </div>
