@@ -9,34 +9,49 @@ import {
   Link,
   Flex,
   Input,
+  Tabs,
+  TabList,
+  Tab,
 } from '@chakra-ui/react';
 import axios from 'axios';
-import { useEffect } from 'react';
 
-async function hadleDelete(id) {
-  const userDelete = '/http:/localhost:3333/users';
-  if (confirm('Deseja realmente excluir este usuário?')) {
-    const result = await axios.delete(userDelete);
+const handleDelete = async (idProduto) => {
+  //window.location.href = 'http://localhost:3000';
+  // console.log(idProduto);
+
+  window.location.href = 'http://localhost:3000';
+  if (confirm('Deseja realmente exluir este usuário?')) {
+    await axios.delete('http://localhost:3333/users/' + idProduto);
   }
-}
+};
+
+// async function handleDelete(idProduto) {
+//   //e.preventDefault();
+//   //window.location.href = 'http://localhost:3000';
+//   // // if (confirm('Deseja realmente excluir este usuário?')) {
+//     const deletar = await axios.delete(userDelete);
+//     return deletar;
+//   // }
+// }
 
 const home = 'http://localhost:3000/';
 const Cadastros = ({ dados }) => (
   <div>
-    <Link href={home}>
-      <Button
-        border="none"
-        w="25"
-        size="md"
-        colorScheme="blue"
-        type="submit"
-        mt="6"
-        ml="5"
-      >
-        Novo registro
-      </Button>
-    </Link>
-    <img style={{ marginTop: 30, marginLeft: 98 }} src="imagens/BR24.png" alt=""  />
+    <img
+      style={{ marginTop: 30, marginLeft: 98 }}
+      src="imagens/BR24.png"
+      alt=""
+    />
+    <Tabs borderBottom={false} variant="soft-rounded" colorScheme="primary">
+      <TabList ml="4">
+        <a href={home}>
+          <Tab color="white" background="#3182ce" mt="4">
+            novo registro
+          </Tab>
+        </a>
+      </TabList>
+    </Tabs>
+
     <Flex>
       <Table variant="simple">
         <Thead>
@@ -51,7 +66,7 @@ const Cadastros = ({ dados }) => (
             <Tr key="">
               <Td>{c.companies.title}</Td>
               <Td lineHeight="2" display="flex" paddingTop="14">
-                {c.name} {c.last_name}
+                {c.name} {c.id}
                 <br />
                 {c.name1} {c.last_name1}
               </Td>
@@ -63,19 +78,18 @@ const Cadastros = ({ dados }) => (
                   size="sm"
                   colorScheme="blue"
                   type="submit"
-                  mr="-64"
+                  onClick={() => handleDelete(c.id)}
                 >
-                  Editar
+                  Atualizar
                 </Button>
-              </Td>
-              <Td>
                 <Button
                   border="none"
                   w="16"
                   size="sm"
                   colorScheme="red"
                   type="submit"
-                  onClick={hadleDelete}
+                  onClick={() => handleDelete(c.id)}
+                  ml="1"
                 >
                   Excluir
                 </Button>
@@ -93,7 +107,6 @@ Cadastros.getInitialProps = async () => {
   const company = 'http://localhost:3333/companies';
 
   const response = await axios.get(user);
-
   return {
     dados: response.data,
   };

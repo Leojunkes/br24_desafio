@@ -10,5 +10,7 @@ e por fim rode ```yarn dev```ou ```npm run dev```
 
 abra http://localhost:3000 com seu browser.
 
+TOAST REACT = ALERT MAIS BONITÃO
+
 
 
