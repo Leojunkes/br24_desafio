@@ -20,13 +20,13 @@ import {
     }
   }
   
-  const home = 'http://localhost:3000/';
+  const cad = 'http://localhost:3000/cadastrar';
   const Companies = ({ dados }) => (
   
     
     <div>
      
-      <Link href={home}>
+      <Link href={cad}>
         <Button
           border="none"
           w="25"
