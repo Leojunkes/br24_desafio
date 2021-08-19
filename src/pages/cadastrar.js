@@ -26,8 +26,7 @@ export default function Cadastrar() {
 
   useEffect(() => {
     const company = 'http://localhost:3333/companies';
-    
-    
+
     axios
       .get(company)
       .then((response) => {
@@ -45,7 +44,7 @@ export default function Cadastrar() {
   const [name1, setName1] = useState('');
   const [last_name, setLastName] = useState('');
   const [last_name1, setLastName1] = useState('');
-  const [companiesId, setCompaniesId] = useState('');
+  const [companiesId, setCompaniesId] = useState(0);
 
   const notify = () => toast.success('Empresa cadastrada com sucesso!');
   const notifyError = () => toast.error('Empresa não existe!');
@@ -55,13 +54,11 @@ export default function Cadastrar() {
     e.preventDefault();
     const data = { title, id };
 
-    //window.location.href="http://localhost:3000/cadastro"
     setTitle('');
 
     axios.post(companyPost, data);
   }
-  function handleCreateNewUsers(e) {
-    e.preventDefault();
+  function handleCreateNewUsers() {
     const data = {
       name,
       name1,
@@ -69,12 +66,15 @@ export default function Cadastrar() {
       last_name1,
       companiesId,
     };
+    setId('');
     setName('');
     setLastName('');
     setLastName1('');
     setName1('');
     axios.post(usersPost, data);
     alert('contatos salvo com sucesso!');
+    window.location.replace(redirectPost);
+    
   }
 
   return (
@@ -97,10 +97,6 @@ export default function Cadastrar() {
             </a>
           </TabList>
         </Tabs>
-        {/* <a href={redirectPost}>cadastro</a>
-        <a style={{ marginLeft: 20 }} href={redirectPostCompanies}>
-          cadastroCompanies
-        </a> */}
       </Flex>
 
       <Flex
@@ -109,7 +105,6 @@ export default function Cadastrar() {
         p="8"
         borderRadius={8}
         flexDirection="column"
-        // method="POST"
         onSubmit={handleCreateNewCompany}
         id="insert_form"
       >
@@ -134,12 +129,13 @@ export default function Cadastrar() {
         <Flex mt="1">
           <Button
             border="none"
-            w="20"
+            w="22"
             size="md"
             colorScheme="blue"
             type="submit"
+            
           >
-            cadastrar
+            Cadastrar Empresas 
           </Button>
         </Flex>
       </Flex>
@@ -151,19 +147,28 @@ export default function Cadastrar() {
           p="8"
           borderRadius={8}
           flexDirection="column"
-          // method="POST"
           onSubmit={handleCreateNewUsers}
           id="insert_form"
         >
           <Stack mt="4">
             <FormControl>
-              <FormLabel htmlFor="empresa">ID da empresa</FormLabel>
+              <FormLabel htmlFor="empresa">Nome da empresa</FormLabel>
+
+              <Select
+                variant="outline"
+                _hover={{ bgColor: 'gray.200' }}
+                required="true"
+                onChange={(e) => setCompaniesId(e.target.value)}
+              >
+                {dados.map((c) => (
+                  <option value={c.id} key={c.id}>
+                    {c.title}
+                  </option>
+                ))}
+              </Select>
 
               <Input
                 value={companiesId}
-                onChange={(event) => {
-                  setCompaniesId(event.target.value);
-                }}
                 name="companiesId"
                 id="title"
                 variant="filled"
@@ -255,12 +260,12 @@ export default function Cadastrar() {
           <Flex mt="1">
             <Button
               border="none"
-              w="20"
+              w="22"
               size="md"
               colorScheme="blue"
               type="submit"
             >
-              cadastrar
+              Cadastrar Contatos
             </Button>
           </Flex>
         </Flex>

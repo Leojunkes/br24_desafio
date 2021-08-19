@@ -16,23 +16,12 @@ import {
 import axios from 'axios';
 
 const handleDelete = async (idProduto) => {
-  //window.location.href = 'http://localhost:3000';
-  // console.log(idProduto);
-
-  window.location.reload();
+  window.location.replace ('http://localhost:3000/');
+  // window.location.reload();
   if (confirm('Deseja realmente exluir este usuário?')) {
     await axios.delete('http://localhost:3333/users/' + idProduto);
   }
 };
-
-// async function handleDelete(idProduto) {
-//   //e.preventDefault();
-//   //window.location.href = 'http://localhost:3000';
-//   // // if (confirm('Deseja realmente excluir este usuário?')) {
-//     const deletar = await axios.delete(userDelete);
-//     return deletar;
-//   // }
-// }
 
 const cad = 'http://localhost:3000/cadastrar';
 const Cadastros = ({ dados }) => (
@@ -52,7 +41,7 @@ const Cadastros = ({ dados }) => (
       </TabList>
     </Tabs>
 
-    <Flex>
+    <Flex >
       <Table variant="simple">
         <Thead>
           <Tr borderBottom="2px" borderColor="gray.400">
