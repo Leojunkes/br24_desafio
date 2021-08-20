@@ -58,7 +58,8 @@ export default function Cadastrar() {
 
     axios.post(companyPost, data);
   }
-  function handleCreateNewUsers() {
+  function handleCreateNewUsers(e) {
+    e.preventDefault();
     const data = {
       name,
       name1,
@@ -73,8 +74,7 @@ export default function Cadastrar() {
     setName1('');
     axios.post(usersPost, data);
     alert('contatos salvo com sucesso!');
-    window.location.replace(redirectPost);
-    
+    window.location.href="http://localhost:3000/";
   }
 
   return (
@@ -133,131 +133,132 @@ export default function Cadastrar() {
             size="md"
             colorScheme="blue"
             type="submit"
-            
           >
-            Cadastrar Empresas 
+            Cadastrar Empresas
           </Button>
         </Flex>
       </Flex>
 
-      <Flex mt="-100" w="100" h="100vh" align="center" justifyContent="center">
-        <Flex
-          as="form"
-          width="100%"
-          p="8"
-          borderRadius={8}
-          flexDirection="column"
-          onSubmit={handleCreateNewUsers}
-          id="insert_form"
-        >
-          <Stack mt="4">
-            <FormControl>
-              <FormLabel htmlFor="empresa">Nome da empresa</FormLabel>
+      <Flex
+        as="form"
+        width="100%"
+        p="8"
+        borderRadius={8}
+        flexDirection="column"
+        onSubmit={handleCreateNewUsers}
+        id="insert_form"
+      >
+        <Stack mt="2">
+          <FormControl>
+            <FormLabel mt='-10' color="gray.700" htmlFor="empresa">
+              Cadastre contatos para empresa abaixo:
+            </FormLabel>
 
-              <Select
-                variant="outline"
-                _hover={{ bgColor: 'gray.200' }}
-                required="true"
-                onChange={(e) => setCompaniesId(e.target.value)}
-              >
-                {dados.map((c) => (
-                  <option value={c.id} key={c.id}>
-                    {c.title}
-                  </option>
-                ))}
-              </Select>
+            <Select
+              variant="outline"
+              _hover={{ bgColor: 'gray.200' }}
+              required="true"
+              onChange={(e) => setCompaniesId(e.target.value)}
+            >
+              {dados.map((c) => (
+                <option value={c.id} key={c.id}>
+                  {c.title}
+                </option>
+              ))}
+            </Select>
 
-              <Input
-                value={companiesId}
-                name="companiesId"
-                id="title"
-                variant="filled"
-                w="100%"
-                type=""
-                _hover={{ bgColor: 'gray.200' }}
-                size="md"
-              />
-            </FormControl>
-            <FormControl>
-              <FormLabel htmlFor="email">Email da empresa</FormLabel>
-              <Input
-                w="100%"
-                name="email"
-                id="email"
-                type="email"
-                variant="filled"
-                _hover={{ bgColor: 'gray.200' }}
-                size="md"
-              />
-            </FormControl>
-            <FormControl>
-              <FormLabel htmlFor="contato1">Nome do contato 1</FormLabel>
-              <Input
-                w="100%"
-                name="name"
-                id="contato1"
-                type="text"
-                variant="filled"
-                _hover={{ bgColor: 'gray.200' }}
-                size="md"
-                required="true"
-                value={name}
-                onChange={(event) => {
-                  setName(event.target.value);
-                }}
-              />
-            </FormControl>
-            <FormControl>
-              <FormLabel htmlFor="sobrenome1">Sobrenome do contato 1</FormLabel>
-              <Input
-                w="100%"
-                name="last_name"
-                id="last_name"
-                type="text"
-                variant="filled"
-                _hover={{ bgColor: 'gray.200' }}
-                size="md"
-                required="true"
-                value={last_name}
-                onChange={(event) => {
-                  setLastName(event.target.value);
-                }}
-              />
-            </FormControl>
-            <FormControl>
-              <FormLabel htmlFor="contato2">Nome do contato 2</FormLabel>
-              <Input
-                w="100%"
-                name="name1"
-                id="name1"
-                type="text"
-                variant="filled"
-                _hover={{ bgColor: 'gray.200' }}
-                size="md"
-                value={name1}
-                onChange={(event) => {
-                  setName1(event.target.value);
-                }}
-              />
-            </FormControl>
-            <FormControl>
-              <FormLabel htmlFor="sobrenome2">Sobrenome do contato 2</FormLabel>
-              <Input
-                w="100%"
-                name="last_name1"
-                id="last_name1"
-                type="text"
-                variant="filled"
-                _hover={{ bgColor: 'gray.200' }}
-                size="md"
-                value={last_name1}
-                onChange={(event) => {
-                  setLastName1(event.target.value);
-                }}
-              />
-            </FormControl>
-          </Stack>
-          <Flex mt="1">
+            <Input
+              value={companiesId}
+              name="companiesId"
+              id="title"
+              variant="filled"
+              w="100%"
+              type=""
+              _hover={{ bgColor: 'gray.200' }}
+              size="md"
+            />
+          </FormControl>
+          <FormControl>
+            <FormLabel htmlFor="email">Email da empresa</FormLabel>
+            <Input
+              w="100%"
+              name="email"
+              id="email"
+              type="email"
+              variant="filled"
+              _hover={{ bgColor: 'gray.200' }}
+              size="md"
+            />
+          </FormControl>
+          <FormControl>
+            <FormLabel htmlFor="contato1">Nome do contato 1</FormLabel>
+            <Input
+              w="100%"
+              name="name"
+              id="contato1"
+              type="text"
+              variant="filled"
+              _hover={{ bgColor: 'gray.200' }}
+              size="md"
+              required="true"
+              value={name}
+              onChange={(event) => {
+                setName(event.target.value);
+              }}
+            />
+          </FormControl>
+          <FormControl>
+            <FormLabel htmlFor="sobrenome1">Sobrenome do contato 1</FormLabel>
+            <Input
+              w="100%"
+              name="last_name"
+              id="last_name"
+              type="text"
+              variant="filled"
+              _hover={{ bgColor: 'gray.200' }}
+              size="md"
+              required="true"
+              value={last_name}
+              onChange={(event) => {
+                setLastName(event.target.value);
+              }}
+            />
+          </FormControl>
+          <FormControl>
+            <FormLabel htmlFor="contato2">Nome do contato 2</FormLabel>
+            <Input
+              w="100%"
+              name="name1"
+              id="name1"
+              type="text"
+              variant="filled"
+              _hover={{ bgColor: 'gray.200' }}
+              size="md"
+              value={name1}
+              onChange={(event) => {
+                setName1(event.target.value);
+              }}
+            />
+          </FormControl>
+          <FormControl>
+            <FormLabel htmlFor="sobrenome2">Sobrenome do contato 2</FormLabel>
+            <Input
+              w="100%"
+              name="last_name1"
+              id="last_name1"
+              type="text"
+              variant="filled"
+              _hover={{ bgColor: 'gray.200' }}
+              size="md"
+              value={last_name1}
+              onChange={(event) => {
+                setLastName1(event.target.value);
+              }}
+            />
+          </FormControl>
+        </Stack>
+        <Flex mt="1">
+          <a href="http://localhost:3000/">
             <Button
               border="none"
               w="22"
@@ -267,7 +268,7 @@ export default function Cadastrar() {
             >
               Cadastrar Contatos
             </Button>
-          </Flex>
+          </a>
         </Flex>
       </Flex>
     </div>

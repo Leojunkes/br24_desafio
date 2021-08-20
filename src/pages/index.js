@@ -14,10 +14,18 @@ import {
   Tab,
 } from '@chakra-ui/react';
 import axios from 'axios';
+import Pagination from '../componentes/pagination';
+
+
+const handleUpdate = async (idUsers) => {
+  // window.location.replace('http://localhost:3000/cadastrar');
+  await axios.put('http://localhost:3333/putUsers/' + idUsers);
+};
 
 const handleDelete = async (idProduto) => {
-  window.location.replace ('http://localhost:3000/');
-  // window.location.reload();
+  // e.preventDefault();
+  window.location.replace('http://localhost:3000/cadastrar');
+
   if (confirm('Deseja realmente exluir este usuário?')) {
     await axios.delete('http://localhost:3333/users/' + idProduto);
   }
@@ -41,7 +49,7 @@ const Cadastros = ({ dados }) => (
       </TabList>
     </Tabs>
 
-    <Flex >
+    <Flex>
       <Table variant="simple">
         <Thead>
           <Tr borderBottom="2px" borderColor="gray.400">
@@ -62,21 +70,22 @@ const Cadastros = ({ dados }) => (
 
               <Td>
                 <Button
+                  type="button"
                   border="none"
                   w="16"
                   size="sm"
                   colorScheme="blue"
-                  type="submit"
-                  onClick={() => handleDelete(c.id)}
+                  onClick={() => handleUpdate(c.id)}
                 >
                   Atualizar
                 </Button>
+
                 <Button
+                  type="button"
                   border="none"
                   w="16"
                   size="sm"
                   colorScheme="red"
-                  type="submit"
                   onClick={() => handleDelete(c.id)}
                   ml="1"
                 >
@@ -87,7 +96,10 @@ const Cadastros = ({ dados }) => (
           </Tbody>
         ))}
       </Table>
+     
     </Flex>
+    <Pagination/>
+    
   </div>
 );
 
