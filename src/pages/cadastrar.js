@@ -22,6 +22,13 @@ export default function Cadastrar() {
   const redirectPost = 'http://localhost:3000/';
   const redirectPostCompanies = 'http://localhost:3000/companies';
 
+  const capitalize = (str) => {
+    if (typeof str !== 'string') {
+      return '';
+    }
+    return str.charAt(0).toUpperCase() + str.substr(1);
+  };
+
   const [dados, setDados] = useState([]);
 
   useEffect(() => {
@@ -31,7 +38,6 @@ export default function Cadastrar() {
       .get(company)
       .then((response) => {
         setDados(response.data);
-        console.log(response.data);
       })
       .catch((error) => {
         alert('ocorreu erro durante o get!');
@@ -44,12 +50,12 @@ export default function Cadastrar() {
   const [name1, setName1] = useState('');
   const [last_name, setLastName] = useState('');
   const [last_name1, setLastName1] = useState('');
-  const [companiesId, setCompaniesId] = useState(0);
+  const [companiesId, setCompaniesId] = useState('');
 
+  //Notificações de Sucesso!
   const notify = () => toast.success('Empresa cadastrada com sucesso!');
-  const notifyError = () => toast.error('Empresa não existe!');
-  const notifyError1 = () => toast.error('Empresa ja cadastrada!');
 
+  //Cadastrar nova empresa
   async function handleCreateNewCompany(e) {
     e.preventDefault();
     const data = { title, id };
@@ -57,7 +63,11 @@ export default function Cadastrar() {
     setTitle('');
 
     axios.post(companyPost, data);
+    if (title) {
+      return notify();
+    }
   }
+  //Cadastrar novos contatos para a empresa
   function handleCreateNewUsers(e) {
     e.preventDefault();
     const data = {
@@ -73,12 +83,12 @@ export default function Cadastrar() {
     setLastName1('');
     setName1('');
     axios.post(usersPost, data);
-    alert('contatos salvo com sucesso!');
-    window.location.href="http://localhost:3000/";
+    notify();
+    window.location.href = 'http://localhost:3000/';
   }
 
   return (
-    <div>
+    <>
       <img
         alt=""
         style={{ marginLeft: 100, marginTop: 20 }}
@@ -150,7 +160,7 @@ export default function Cadastrar() {
       >
         <Stack mt="2">
           <FormControl>
-            <FormLabel mt='-10' color="gray.700" htmlFor="empresa">
+            <FormLabel mt="-10" color="gray.700" htmlFor="empresa">
               Cadastre contatos para empresa abaixo:
             </FormLabel>
 
@@ -176,6 +186,7 @@ export default function Cadastrar() {
               type=""
               _hover={{ bgColor: 'gray.200' }}
               size="md"
+              readOnly
             />
           </FormControl>
           <FormControl>
@@ -271,6 +282,6 @@ export default function Cadastrar() {
           </a>
         </Flex>
       </Flex>
-    </div>
+    </>
   );
 }

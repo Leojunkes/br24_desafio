@@ -10,7 +10,24 @@ e por fim rode ```yarn dev```ou ```npm run dev```
 
 abra http://localhost:3000 com seu browser.
 
-TOAST REACT = ALERT MAIS BONITÃO
+## Tecnologias
+
+### FrontEnd
+- React-js
+- Next-js
+- Chakra-ui
+
+### BackEnd
+- Node-js
+- Typescript
+- uuid
+- Express
+- ts-node-dev
+
+## Uso e Possíveis Problemas
+
+Foi testado no google Chrome - ok
+Foi testado no Firefox - Nem todas as funcionalidades estão ok.
 
 
 
