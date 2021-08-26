@@ -11,6 +11,7 @@ import {
   Input,
   FormControl,
   FormLabel,
+  Flex,
 } from '@chakra-ui/react';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
@@ -31,7 +32,7 @@ function ModalUpdate() {
         last_name: newLast,
         name1: newName1,
         last_name1: newLast1,
-        id,
+        id: id,
       })
       .then((res) => {
         alert('update');
@@ -62,74 +63,75 @@ function ModalUpdate() {
       >
         Atualizar
       </Button>
-
-      <Modal isOpen={isOpen} onClose={onClose}>
+      
+      <Modal   isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Atualizar Cadastro</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            <FormControl>
-              <FormLabel>Nome do contato 1</FormLabel>
-              <Input
-                type="text"
-                placeholder="nome"
-                onChange={(event) => {
-                  setNewName(event.target.value);
-                }}
-              />
-            </FormControl>
-            <FormControl>
-              <FormLabel>Sobrenome do contato 1</FormLabel>
-              <Input
-                type="text"
-                placeholder="sobrenome"
-                onChange={(event) => {
-                  setNewLast(event.target.value);
-                }}
-              />
-            </FormControl>
-            <FormControl>
-              <FormLabel>Nome do contato 2</FormLabel>
-              <Input
-                type="text"
-                placeholder="nome"
-                onChange={(event) => {
-                  setNewName1(event.target.value);
-                }}
-              />
-            </FormControl>
-            <FormControl>
-              <FormLabel>Sobrenome do contato 2</FormLabel>
-              <Input
-                type="text"
-                placeholder="sobrenome"
-                onChange={(event) => {
-                  setNewLast1(event.target.value);
-                }}
-              />
-            </FormControl>
-          </ModalBody>
+       
+          <ModalContent>
+            <ModalHeader>Atualizar Cadastro</ModalHeader>
+            <ModalCloseButton />
+            <ModalBody>
+              <FormControl>
+                <FormLabel>Nome do contato 1</FormLabel>
+                <Input
+                  type="text"
+                  placeholder="nome"
+                  onChange={(event) => {
+                    setNewName(event.target.value);
+                  }}
+                />
+              </FormControl>
+              <FormControl>
+                <FormLabel>Sobrenome do contato 1</FormLabel>
+                <Input
+                  type="text"
+                  placeholder="sobrenome"
+                  onChange={(event) => {
+                    setNewLast(event.target.value);
+                  }}
+                />
+              </FormControl>
+              <FormControl>
+                <FormLabel>Nome do contato 2</FormLabel>
+                <Input
+                  type="text"
+                  placeholder="nome"
+                  onChange={(event) => {
+                    setNewName1(event.target.value);
+                  }}
+                />
+              </FormControl>
+              {dados.map((c)=>(
 
-          <ModalFooter>
-            {dados.map((c) => (
-              <Button
+             
+              <FormControl key={c.id}>
+                <FormLabel>Sobrenome do contato 2</FormLabel>
+                <Input
+                  type="text"
+                  placeholder="sobrenome"
+                  onChange={(event) => {
+                    setNewLast1(event.target.value);
+                  }}
+                />
+                <Button
                 type="button"
                 border="none"
-                key={c.id}
                 w="16"
                 size="sm"
-                colorScheme="blue"
+                colorScheme="white"
                 onClick={() => handleUpdate(c.id)}
-              >
-                Atualizar
-              </Button>
-            ))}
+              ></Button>
+              </FormControl>
+               ))}
+            </ModalBody>
 
-            
-          </ModalFooter>
-        </ModalContent>
+            <ModalFooter>
+              
+            </ModalFooter>
+          </ModalContent>
+        
       </Modal>
+      
     </>
   );
 }

@@ -17,57 +17,45 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function Cadastrar() {
-  const usersPost = 'http://localhost:3333/contacts';
-
   const redirectPost = 'http://localhost:3000/';
   const redirectPostCompanies = 'http://localhost:3000/companies';
 
   const [dados, setDados] = useState([]);
 
-  useEffect(() => {
-    const company = 'http://localhost:3333/companies';
+  const [newName, setNewName] = useState('');
+  const [newLast, setNewLast] = useState('');
+  const [newName1, setNewName1] = useState('');
+  const [newLast1, setNewLast1] = useState('');
 
+  useEffect(() => {
+    const users = 'http://localhost:3333/users';
     axios
-      .get(company)
+      .get(users)
       .then((response) => {
         setDados(response.data);
       })
       .catch((error) => {
-        alert('ocorreu erro durante o get!');
+        alert('ocorreu um erro durante o get!');
       });
   }, []);
 
-  const [id, setId] = useState([]);
-
-  const [name, setName] = useState('');
-  const [name1, setName1] = useState('');
-  const [last_name, setLastName] = useState('');
-  const [last_name1, setLastName1] = useState('');
-  const [companiesId, setCompaniesId] = useState('');
+  const handleUpdate = async (id) => {
+    window.location.replace('http://localhost:3000/');
+    await axios
+      .put('http://localhost:3333/putUsers/' + id, {
+        name: newName,
+        last_name: newLast,
+        name1: newName1,
+        last_name1: newLast1,
+        id: id,
+      })
+      .then((res) => {
+        alert('update');
+      });
+  };
 
   //Notificações de Sucesso!
   const notify = () => toast.success('Contatos cadastrados com sucesso!');
-
-  //Cadastrar novos contatos para a empresa
-  function handleCreateNewUsers(e) {
-    e.preventDefault();
-    const data = {
-      name,
-      name1,
-      last_name,
-      last_name1,
-      companiesId,
-    };
-    setId('');
-    setName('');
-    setLastName('');
-    setLastName1('');
-    setName1('');
-
-    axios.post(usersPost, data);
-    notify();
-    window.location.href = 'http://localhost:3000/';
-  }
 
   return (
     <>
@@ -93,52 +81,14 @@ export default function Cadastrar() {
       </Flex>
 
       <Flex
-        as="form"
         width="100%"
         p="8"
         borderRadius={8}
         flexDirection="column"
-        onSubmit={handleCreateNewUsers}
         id="insert_form"
       >
         <Stack mt="2">
-          <FormControl mt="4">
-            <FormLabel
-              fontSize="16"
-              mt="-10"
-              color="gray.700"
-              htmlFor="empresa"
-            >
-              Cadastre contatos para a empresa abaixo:
-            </FormLabel>
-
-            <Select
-              variant="outline"
-              _hover={{ bgColor: 'gray.200' }}
-              required="true"
-              onChange={(e) => setCompaniesId(e.target.value)}
-            >
-              <option>-</option>
-              {dados.map((c) => (
-                <option value={c.id} key={c.id}>
-                  {c.title}
-                </option>
-              ))}
-            </Select>
-
-            <Input
-              value={companiesId}
-              name="companiesId"
-              id="title"
-              variant="filled"
-              w="100%"
-              _hover={{ bgColor: 'gray.200' }}
-              size="md"
-              readOnly
-              type="hidden"
-            />
-          </FormControl>
-
+          Atualize contatos para a empresa abaixo:
           <FormControl>
             <FormLabel htmlFor="contato1">Nome do contato 1</FormLabel>
             <Input
@@ -150,9 +100,9 @@ export default function Cadastrar() {
               _hover={{ bgColor: 'gray.200' }}
               size="md"
               required="true"
-              value={name}
+              value={newName}
               onChange={(event) => {
-                setName(event.target.value);
+                setNewName(event.target.value);
               }}
             />
           </FormControl>
@@ -167,9 +117,9 @@ export default function Cadastrar() {
               _hover={{ bgColor: 'gray.200' }}
               size="md"
               required="true"
-              value={last_name}
+              value={newLast}
               onChange={(event) => {
-                setLastName(event.target.value);
+                setNewLast(event.target.value);
               }}
             />
           </FormControl>
@@ -183,9 +133,9 @@ export default function Cadastrar() {
               variant="filled"
               _hover={{ bgColor: 'gray.200' }}
               size="md"
-              value={name1}
+              value={newName1}
               onChange={(event) => {
-                setName1(event.target.value);
+                setNewName1(event.target.value);
               }}
             />
           </FormControl>
@@ -199,25 +149,30 @@ export default function Cadastrar() {
               variant="filled"
               _hover={{ bgColor: 'gray.200' }}
               size="md"
-              value={last_name1}
+              value={newLast1}
               onChange={(event) => {
-                setLastName1(event.target.value);
+                setNewLast1(event.target.value);
               }}
             />
           </FormControl>
         </Stack>
-        <Flex mt="1">
-          <a href="http://localhost:3000/">
+
+        <Flex flexDirection="column" mt='2'>
+        <label fontSize='8' mt='2'>Escolha abaixo qual empresa você quer alterar: </label>
+          {dados.map((cad) => (
             <Button
               border="none"
               w="22"
               size="md"
               colorScheme="blue"
-              type="submit"
+              
+              onClick={() => handleUpdate(cad.id)}
+              key={cad.id}
+              mt='0.5'
             >
-              Cadastrar Contatos
+              {cad.companies.title}
             </Button>
-          </a>
+          ))}
         </Flex>
       </Flex>
     </>

@@ -1,3 +1,9 @@
+## Pages
+
+Page Index - página inicial é a de listagem de contatos de empresas.
+Page companies - página de listagem e cadastro de Empresas(Formulário).
+Page Cadastrar - página onde cadastramos contatos para empresas(Formulário)
+
 ## Instalação
 
 Clone o repositório com ```git clone https://github.com/Leojunkes/br24_desafio```
@@ -28,6 +34,8 @@ abra http://localhost:3000 com seu browser.
 
 Foi testado no google Chrome - ok
 Foi testado no Firefox - Nem todas as funcionalidades estão ok.
+
+
 
 
 

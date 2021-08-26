@@ -14,8 +14,6 @@ import {
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 
-import ModalUpdate from '../components/modalUpdate';
-
 export default function Cadastros() {
   //Função DELETAR!
   const handleDelete = async (idProduto) => {
@@ -26,6 +24,7 @@ export default function Cadastros() {
 
   const reload = 'http://localhost:3000';
   const cad = 'http://localhost:3000/cadastrar';
+  const redirectPost = 'http://localhost:3000/companies';
 
   const [dados, setDados] = useState([]);
 
@@ -53,13 +52,30 @@ export default function Cadastros() {
       <Tabs borderBottom={false} variant="soft-rounded" colorScheme="primary">
         <TabList ml="4">
           <a href={cad}>
-            <Tab color="white" background="#3182ce" mt="4">
+            <Tab
+              _hover={{ color: 'white', bg: 'blue.600' }}
+              color="white"
+              background="#3182ce"
+              mt="4"
+            >
               novo registro
+            </Tab>
+          </a>
+
+          <a href={redirectPost}>
+            <Tab
+              _hover={{ color: 'white', bg: 'blue.600' }}
+              color="white"
+              bg="blue.500"
+              ml="1"
+              mt="4"
+            >
+              Cadastro de empresas
             </Tab>
           </a>
           <a href={reload}>
             <Tab color="white" background="#396d9d" mt="4">
-              Refresh
+              Atualizar
             </Tab>
           </a>
         </TabList>
@@ -71,6 +87,9 @@ export default function Cadastros() {
             <Tr borderBottom="2px" borderColor="gray.400">
               <Th color="black">Nome da Empresa</Th>
               <Th color="black">Contatos</Th>
+              <Th><a href='http://localhost:3000/cadastroUpdate'><Button size='md' _hover={{ color: 'white', bg: 'blue.600' }}
+                  color="white"
+                  background="blue.500">Alterar Cadastro de Contatos</Button></a></Th>
             </Tr>
           </Thead>
           {dados.map((c) => (
@@ -84,7 +103,6 @@ export default function Cadastros() {
                 </Td>
 
                 <Td>
-                  <ModalUpdate />
                   <Button
                     type="button"
                     border="none"
