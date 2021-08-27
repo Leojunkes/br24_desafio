@@ -5,7 +5,6 @@ import {
   FormControl,
   FormLabel,
   Stack,
-  Select,
   Tabs,
   TabList,
   Tab,
@@ -43,10 +42,10 @@ export default function Cadastrar() {
       .put('http://localhost:3333/putCompanies/' + id, {
         title: newCompany,
         email: newEmail,
-        
       })
       .then((res) => {
-        alert('update');
+        alert('Cadastro alterado com sucesso');
+        
       });
   };
 
@@ -95,7 +94,6 @@ export default function Cadastrar() {
               variant="filled"
               _hover={{ bgColor: 'gray.200' }}
               size="md"
-              
               value={newCompany}
               onChange={(event) => {
                 setNewCompany(event.target.value);
@@ -112,7 +110,6 @@ export default function Cadastrar() {
               variant="filled"
               _hover={{ bgColor: 'gray.200' }}
               size="md"
-              
               value={newEmail}
               onChange={(event) => {
                 setNewEmail(event.target.value);
@@ -122,9 +119,9 @@ export default function Cadastrar() {
         </Stack>
 
         <Flex flexDirection="column" mt="2">
-          <label fontSize="8" mt="2">
+          <big><label mt="2">
             Escolha abaixo qual empresa você quer alterar:{' '}
-          </label>
+          </label></big>
           {dados.map((cad) => (
             <Button
               border="none"
@@ -134,6 +131,7 @@ export default function Cadastrar() {
               onClick={() => handleUpdate(cad.id)}
               key={cad.id}
               mt="0.5"
+              fontSize="16"
             >
               {cad.title}
             </Button>

@@ -21,7 +21,6 @@ export default function Cadastrar() {
   const redirectPostCompanies = 'http://localhost:3000/companies';
 
   const [dados, setDados] = useState([]);
-
   const [newName, setNewName] = useState('');
   const [newLast, setNewLast] = useState('');
   const [newName1, setNewName1] = useState('');
@@ -50,12 +49,13 @@ export default function Cadastrar() {
         id: id,
       })
       .then((res) => {
-        alert('update');
+        alert('Contatos atualizados com sucesso!');
       });
   };
 
   //Notificações de Sucesso!
   const notify = () => toast.success('Contatos cadastrados com sucesso!');
+  const notify1 = () => toast.success('Contatos atualizados com sucesso!');
 
   return (
     <>
@@ -157,18 +157,19 @@ export default function Cadastrar() {
           </FormControl>
         </Stack>
 
-        <Flex flexDirection="column" mt='2'>
-        <label fontSize='8' mt='2'>Escolha abaixo qual empresa você quer alterar: </label>
+        <Flex flexDirection="column" mt="2">
+          <label fontSize="8" mt="2">
+            Escolha abaixo qual empresa você quer alterar:{' '}
+          </label>
           {dados.map((cad) => (
             <Button
               border="none"
               w="22"
               size="md"
               colorScheme="blue"
-              
               onClick={() => handleUpdate(cad.id)}
               key={cad.id}
-              mt='0.5'
+              mt="0.5"
             >
               {cad.companies.title}
             </Button>
