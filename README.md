@@ -1,16 +1,16 @@
 ## Preview
 
-<img width="100" src='public/imagens/cellcadastrobr24.png' />
+<img  src='public/imagens/cellcadastrobr24.png' />
 
-<img width="100" src='public/imagens/pccadastrobr24.png'/>
+<img  src='public/imagens/pccadastrobr24.png'/>
 
-<img width='100' src='public/imagens/cadastrobr24.png' />
+<img  src='public/imagens/cadastrobr24.png' />
 
 <img width='300' src='public/imagens/cadastrobr241.png' />
 
 ## Tecnologias utilizadas no projeto
 
-<img width="300" src="public/imagens/tecnologias.png" />
+<img  src="public/imagens/tecnologias.png" />
 
 ## Pages
 
