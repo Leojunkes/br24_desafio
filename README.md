@@ -1,4 +1,4 @@
-## Previews 
+## Preview
 
 <img width="500" src='public/imagens/pccadastrobr24.png'/>
 
