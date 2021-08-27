@@ -1,12 +1,12 @@
 ## Previews 
 
-<img width="500" src='public/imagens/cellcadastrobr24.png' />
-
 <img width="500" src='public/imagens/pccadastrobr24.png'/>
 
-<img width='400' src='public/imagens/cadastrobr24.png' />
+<img width="500" src='public/imagens/cellcadastrobr24.png' />
 
-<img width='400' src='public/imagens/cadastrobr241.png' />
+<img width='500' src='public/imagens/cadastrobr24.png' />
+
+<img width='500' src='public/imagens/cadastrobr241.png' />
 
 ## Tecnologias utilizadas no projeto
 
@@ -15,8 +15,8 @@
 ## Pages
 
 - Page Index -> página inicial é a de listagem de contatos de empresas.
-- Page companies - página de listagem e cadastro de Empresas(Formulário).
-- Page Cadastrar - página onde cadastramos contatos para empresas(Formulário)
+- Page companies -> página de listagem e cadastro de Empresas(Formulário).
+- Page Cadastrar -> página onde cadastramos contatos para empresas(Formulário)
 
 ## Instalação
 
@@ -38,16 +38,13 @@ abra http://localhost:3000 com seu browser.
 - Chakra-ui
 
 ### BackEnd
-- Node-js<br>
+- Node-js
 - Typescript
 - uuid
 - Express
 - ts-node-dev
 
-## Uso e Possíveis Problemas
 
-Foi testado no google Chrome - ok <br>
-Foi testado no Firefox - Nem todas as funcionalidades estão ok.
 
 
 
