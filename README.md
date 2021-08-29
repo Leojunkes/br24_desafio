@@ -18,6 +18,11 @@
 - Page companies -> página de listagem e cadastro de Empresas(Formulário).
 - Page Cadastrar -> página onde cadastramos contatos para empresas(Formulário)
 
+
+## Sobre
+
+Aplicação de cadastro(formulário) de empresas seus contatos, exemplo:Em uma loja-varejo cadastramos uma empresa x no sistema, e somente 2 pessoas poderão comprar em nome dessa empresa, então cadastramos 2 pessoas no sistema em nome desta empresa. 
+
 ## Instalação
 
 Clone o repositório com ```git clone https://github.com/Leojunkes/br24_desafio```
