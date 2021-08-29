@@ -21,7 +21,7 @@
 
 ## Sobre
 
-Aplicação de cadastro(formulário) de empresas seus contatos, exemplo:Em uma loja-varejo cadastramos uma empresa x no sistema, e somente 2 pessoas poderão comprar em nome dessa empresa, então cadastramos 2 pessoas no sistema em nome desta empresa. 
+Aplicação de cadastro(formulário) de empresas e seus contatos, exemplo: Em uma loja-varejo cadastramos uma empresa x no sistema, e somente 2 pessoas poderão comprar em nome dessa empresa, então cadastramos 2 pessoas no sistema em nome desta empresa. 
 
 ## Instalação
 
